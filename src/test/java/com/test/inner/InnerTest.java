@@ -1,5 +1,7 @@
 package com.test.inner;
 
+import java.awt.*;
+
 /**
  * @author dxf@choicesoft.com.cn
  *
@@ -60,15 +62,6 @@ class Outer {
 	 * ----------成员内部类----------
 	 *  建议在外部类中定义方法，对外提供内部类接口
 	 */
-	public void innerPrint() {
-		Inner inner = new Inner();
-		inner.print();
-	}
-	private class Inner{
-		public void print() {
-			System.out.println("inner  " + name);
-		}
-	}
 	class Inner1 {
 		public void print() {
 			System.out.println("inner1  " + name);
@@ -154,9 +147,6 @@ public class InnerTest {
 	public static void main(String[] args) {
 		
 		Outer outer = new Outer("dongxuefei");
-		
-		// 成员内部类
-		outer.innerPrint(); //private
 		
 		Outer.Inner1 inner = outer.new Inner1(); // public
 		inner.print();
