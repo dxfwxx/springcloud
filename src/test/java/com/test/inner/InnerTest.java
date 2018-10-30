@@ -1,7 +1,5 @@
 package com.test.inner;
 
-import java.awt.*;
-
 /**
  * @author dxf@choicesoft.com.cn
  *
@@ -79,10 +77,8 @@ class Outer {
 	 *  在jdk1.8 中取消了这个特性, 编译器默认为final
  	 */
 	public void show() {
-		int x = 0;
 		class Inner2{
 			public void print() {
-				// x++;
 				System.out.println("inner2  " + name);
 			}
 		}
@@ -93,9 +89,6 @@ class Outer {
 	
 	/***
 	 * ---------静态内部类----------
-	 * 在类内部定义一个静态类(封装的作用)
-	 *       (1) 如同静态变量一样，不需要依赖外部类对象
-	 *       (2) 静态内部类只能访问外部类的静态变量或静态方法
 	 */
 	static class Inner3 {
 		public void print() {
@@ -107,15 +100,6 @@ class Outer {
 	
 	/***
 	 * ---------匿名内部类----------
-	 *       (1) 继承式的匿名内部类
-	 *       (2) 接口式的匿名内部类
-	 *       (3) 参数式的匿名内部类
-	 *    注意:
-	 *       (1) 不能有构造方法，只能有一个实例
-	 *       (2) 不能定义任何静态成员、静态方法(依赖对象)
-	 *       (3) 不能是public/private/protected/static
-	 *       (4) 一定是在new的后面，用其隐含实现一个接口或继承一个类
-	 *       (5) 匿名内部类为局部的，所以局部内部列的所有限制都对其生效
 	 *  继承式
 	 */
 	public void print1() {

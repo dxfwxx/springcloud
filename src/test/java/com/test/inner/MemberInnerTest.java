@@ -12,16 +12,18 @@ class Animal{
 	
 	// 1. 外部类修饰符 public default  内部类修饰符 public/private/default/protected
 	public class Head {
-		String name = "head";
-		public void print(){
-			// 3. 访问外部类成员
+//		String name = "head";
+		public void print(int x){
+			// 2. 访问外部类成员
 			System.out.println(a);
 			
 			// 5.访问值
-			String name = "print";
-			System.out.println("inner" + name);
-			System.out.println("inner  " + this.name);
-			System.out.println("inner  " + Animal.this.name);
+//			String name = "print";
+			System.out.println(name);
+//			System.out.println(this.name);
+//			System.out.println(Animal.this.name);
+			
+			System.out.println(x);
 		}
 	}
 	protected class Hand{
@@ -47,8 +49,10 @@ class Dog extends Animal {
 	
 	public void print() {
 		new Hand().print();
+		System.out.println("---------");
 		
-		new Head().print();
+		new Head().print(10);
+		System.out.println("---------");
 		
 		super.print();
 	}
@@ -57,9 +61,11 @@ public class MemberInnerTest {
 	public static void main(String[] args) {
 		Animal animal = new Animal();
 		animal.print();
+		System.out.println("---------");
+		
 		// 4.创建内部类对象
 		Animal.Head head = animal.new Head();
-		head.print();
+		head.print(10);
 		System.out.println("---------");
 		
 		Animal dog = new Dog();

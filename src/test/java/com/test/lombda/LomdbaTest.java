@@ -1,30 +1,24 @@
-package com.test.inner;
+package com.test.lombda;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author dxf@choicesoft.com.cn
  * @data
  */
 public class LomdbaTest {
-	
-	public static void main(String[] args) {
-	
-	}
 	/***
-	 *  例1、用lambda表达式实现Runnable
+	 *  例1、用lambda表达式实现Runnable  简化接口式的匿名内部类实现（接口只有一个方法）
 	 */
 	@Test
-	public void test1() {
+	public void test() {
 		
 		// Java 8之前：
 		new Thread(new Runnable() {
@@ -38,19 +32,41 @@ public class LomdbaTest {
 	}
 	
 	/***
-	 * 例2、map 映射
+	 * 例2、使用lambda表达式对列表进行迭代
 	 */
 	@Test
 	public void test2() {
-		// 转换大写
+		// Java 8之前：
 		List<String> features = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API");
-		System.out.println(features.stream().map(String:: toUpperCase).collect(Collectors.toList()));
+		for (String feature : features) {
+			System.out.println(feature);
+		}
+		
+		// Java 8之后：
+		features = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API");
+		features.forEach(n -> System.out.println(n));
+		System.out.println("------");
+		
+		// 使用Java 8的方法引用更方便，方法引用由::双冒号操作符标示，
+		// 看起来像C++的作用域解析运算符
+		features.forEach(System.out::println);
+		System.out.println("------");
 	}
 	/***
-	 * 例3、Java 8中使用lambda表达式的Map和Reduce示例
+	 * 例3、map 映射
 	 */
 	@Test
 	public void test3() {
+		// 转换大写
+		List<String> features = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API");
+		System.out.println(features.stream().map(String::toUpperCase));
+		System.out.println(features.stream().map(String::toUpperCase).collect(Collectors.toList()));
+	}
+	/***
+	 * 例4、Java 8中使用lambda表达式的Map和Reduce示例
+	 */
+	@Test
+	public void test4() {
 		// 不使用lambda表达式为每个订单加上12%的税
 		List<Integer> costBeforeTax = Arrays.asList(100, 200, 300, 400, 500);
 		for (Integer cost : costBeforeTax) {
@@ -77,27 +93,6 @@ public class LomdbaTest {
 		costBeforeTax = Arrays.asList(100, 200, 300, 400, 500);
 		double bill = costBeforeTax.stream().map((cost) -> cost + 0.12*cost).reduce((sum, cost) -> sum + cost).get();
 		System.out.println("Total : " + bill);
-	}
-	/***
-	 * 例4、使用lambda表达式对列表进行迭代
-	 */
-	@Test
-	public void test4() {
-		// Java 8之前：
-		List<String> features = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API");
-		for (String feature : features) {
-			System.out.println(feature);
-		}
-		// Java 8之后：
-		features = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API");
-		features.forEach(n -> System.out.println(n));
-		System.out.println("------");
-		// 使用Java 8的方法引用更方便，方法引用由::双冒号操作符标示，
-		// 看起来像C++的作用域解析运算符
-		features.forEach(System.out::println);
-		System.out.println("------");
-		
-		
 	}
 	
 	
@@ -166,16 +161,21 @@ public class LomdbaTest {
 		List<String> G7 = Arrays.asList("USA", "Japan", "France", "Germany", "Italy", "U.K.","Canada");
 		String G7Countries = G7.stream().map(x -> x.toUpperCase()).collect(Collectors.joining(", ", "[", "]"));
 		System.out.println(G7Countries);
+		// 最小值，返回optional
+		Optional optional = G7.stream().collect(Collectors.minBy(String::compareTo));
+		System.out.println(optional.get());
 		
-		System.out.println(G7.stream().collect(Collectors.minBy(String::compareTo)));
-		
+		// 条件分组
 		System.out.println(G7.stream().collect(Collectors.groupingBy(x -> x)));
 		System.out.println(G7.stream().collect(Collectors.groupingBy(x -> x, Collectors.counting())));
 		
+		// 条件划分
 		System.out.println(G7.stream().collect(Collectors.partitioningBy(x -> x.length() > 4)));
 		System.out.println(G7.stream().collect(Collectors.partitioningBy(x -> x.length() > 4, Collectors.counting())));
-
-//		System.out.println(G7.stream().collect(Collectors.collectingAndThen(Collectors.joining("--"), x -> x + "x")));
+		
+		//先进行join，然后在最后加上 ",China"
+		String str = G7.stream().collect(Collectors.collectingAndThen(Collectors.joining(","), x -> x + ",China"));
+		System.out.println(str);
 	}
 	
 	
