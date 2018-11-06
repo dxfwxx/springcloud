@@ -18,11 +18,13 @@ public class MyFilter extends ZuulFilter {
 	
 	private static Logger logger = LoggerFactory.getLogger(MyFilter.class);
 	
+	// 前置过滤器
 	@Override
 	public String filterType() {
 		return "pre";
 	}
 	
+	// 执行顺序
 	@Override
 	public int filterOrder() {
 		return 0;

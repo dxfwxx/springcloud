@@ -15,5 +15,22 @@ zuul:
     api-b:
       path: /api-b/**
       serviceId: service-feign
+    user:
+      path: /user/**
+      sensitiveHeaders:
+      serviceId: auth-server
+
+security:
+  oauth2:
+    client:
+      #是获取访问令牌的URL
+      access-token-uri: http://localhost:9999/user/oauth/token
+      #是授权用户被重定向的目标URL
+      user-authorization-uri: http://localhost:9999/user/oauth/authorize
+      client-id: webapp
+    resource:
+      #是用户终端访问用户信息的URL
+      user-info-uri: http://localhost:9001/user
+      prefer-token-info: false
 
 
