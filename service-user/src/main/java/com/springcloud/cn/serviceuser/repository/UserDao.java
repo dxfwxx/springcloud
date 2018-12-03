@@ -1,6 +1,6 @@
-package com.springcloud.cn.authserver.repository;
+package com.springcloud.cn.serviceuser.repository;
 
-import com.springcloud.cn.authserver.entity.SysUser;
+import com.springcloud.cn.serviceuser.entity.SysUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

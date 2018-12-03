@@ -1,0 +1,66 @@
+server:
+  port: 8766
+
+spring:
+  application:
+    name: service-zuul
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: "123456"
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+proxy:
+  auth:
+    load-balanced: true
+zuul:
+  add-proxy-headers: true
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: service-ribbon
+    api-b:
+      path: /api-b/**
+      serviceId: service-feign
+    uaa:
+      path: /uaa/**
+      sensitive-headers:
+      serviceId: auth-server
+    user:
+      path: /user/**
+      sensitive-headers:
+      serviceId: service-user
+    blog:
+      path: /blog/**
+      sensitive-headers:
+      serviceId: service-blog
+  host:
+    socket-timeout-millis: 30000
+    connect-timeout-millis: 50000
+#熔断器超时时间
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000
+
+security:
+  oauth2:
+    client:
+      #是获取访问令牌的URL
+      access-token-uri: http://localhost:8766/uaa/oauth/token
+      #是授权用户被重定向的目标URL
+      user-authorization-uri: http://localhost:8766/uaa/oauth/authorize
+#      client-id: client
+    resource:
+      #是用户终端访问用户信息的URL
+      user-info-uri: http://localhost:8766/uaa/user
+      prefer-token-info: false
+
+

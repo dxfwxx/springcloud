@@ -4,10 +4,31 @@ server:
 spring:
   application:
     name: service-user
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: "123456"
+  mybatis:
+    configuration:
+      cacheEnabled: true
+      lazyLoadingEnabled: true
+      aggressiveLazyLoading: true
+      multipleResultSetsEnabled: true
+      useColumnLabel: true
+      useGeneratedKeys: false
+      autoMappingBehavior: PARTIAL
+      defaultExecutorType: REUSE
+      mapUnderscoreToCamelCase: true
+      localCacheScope: SESSION
+      jdbcTypeForNull: NULL
   redis:
     host: 127.0.0.1
     port: 6379
     password: "123456"
+
+mybatis:
+  mapperLocations: classpath:mybatis/*/*.xml
 
 eureka:
   client:

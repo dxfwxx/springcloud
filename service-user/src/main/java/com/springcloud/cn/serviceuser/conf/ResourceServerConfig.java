@@ -14,36 +14,41 @@ import javax.servlet.http.HttpServletResponse;
 @Configuration
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+//
+//	@Override
+//	public void configure(HttpSecurity http) throws Exception {
+//		http
+//				.authorizeRequests()
+//				.anyRequest().authenticated();
+////				.and()
+////				.csrf().disable();
+//	}
+	private static class OAuth2RequestMather implements RequestMatcher {
 
+		@Override
+		public boolean matches(HttpServletRequest httpServletRequest) {
+			if(httpServletRequest.getRequestURL().toString().contains("loadUserByUsername")){
+				return false;
+			}
+			if(httpServletRequest.getParameter(OAuth2AccessToken.ACCESS_TOKEN) != null) {
+				return true;
+			}
+			String auth = httpServletRequest.getHeader("Authorization");
+			if(auth != null) {
+				if(auth.startsWith(OAuth2AccessToken.BEARER_TYPE)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	}
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http
-				.authorizeRequests()
-				.anyRequest().authenticated();
-//				.and()
-//				.csrf().disable();
+				.requestMatcher(new OAuth2RequestMather()).authorizeRequests()
+				.antMatchers("/loadUserByUsername").permitAll()
+				.anyRequest()
+				.authenticated();
 	}
-//	private static class OAuth2RequestMather implements RequestMatcher {
-//
-//		@Override
-//		public boolean matches(HttpServletRequest httpServletRequest) {
-//			if(httpServletRequest.getParameter(OAuth2AccessToken.ACCESS_TOKEN) != null) {
-//				return true;
-//			}
-//			String auth = httpServletRequest.getHeader("Authorization");
-//			if(auth != null) {
-//				if(auth.startsWith(OAuth2AccessToken.BEARER_TYPE)) {
-//					return true;
-//				}
-//			}
-//			return false;
-//		}
-//	}
-//	@Override
-//	public void configure(HttpSecurity http) throws Exception {
-//		http.requestMatcher(new OAuth2RequestMather()).authorizeRequests()
-//				.anyRequest()
-//				.authenticated();
-//	}
 
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springcloud.cn.serviceuser.repository.AuthDao" >
+
+    <resultMap id="roleMap" type="com.springcloud.cn.serviceuser.entity.SysRole">
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="value" property="value" />
+        <collection property="authrotityList" ofType="com.springcloud.cn.serviceuser.entity.SysAuthrotity">
+            <result column="auth_id" property="id"/>
+            <result column="auth_name" property="name" />
+            <result column="auth_value" property="value" />
+        </collection>
+     </resultMap>
+    <select id="findAuthByRoleList" resultMap="roleMap" parameterType="java.util.List">
+        select a.id, a.name, a.value,
+              b.id as auth_id, b.name as auth_name, b.value as auth_value
+        from sys_role a
+        join sys_role_auth c on a.id = c.role_id
+        join sys_authority b on b.id = c.auth_id
+        <where>
+            <if test="list != null and list.size() > 0">
+                and a.id in
+               <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+                   #{item.id}
+               </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

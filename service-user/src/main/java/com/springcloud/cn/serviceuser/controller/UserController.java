@@ -1,8 +1,11 @@
 package com.springcloud.cn.serviceuser.controller;
 
-import com.springcloud.cn.serviceuser.entity.Person;
+import com.springcloud.cn.serviceuser.entity.SysUser;
 import com.springcloud.cn.serviceuser.entity.User;
+import com.springcloud.cn.serviceuser.service.UserService;
 import com.springcloud.cn.serviceuser.utils.MessageBody;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +19,9 @@ import java.security.Principal;
  */
 @RestController
 public class UserController {
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping("/login")
 	@ResponseBody
@@ -40,4 +46,7 @@ public class UserController {
 		return MessageBody.getMessageBody(true);
 	}
 	
+	@RequestMapping("/loadUserByUsername")
+	@ResponseBody
+	public SysUser loadUserByUsername(@RequestBody String username) { return userService.loadUserByUsername(username); }
 }

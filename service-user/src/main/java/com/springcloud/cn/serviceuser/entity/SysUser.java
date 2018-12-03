@@ -1,4 +1,4 @@
-package com.springcloud.cn.authserver.entity;
+package com.springcloud.cn.serviceuser.entity;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -15,6 +14,18 @@ import java.util.List;
  */
 @Data
 public class SysUser implements Serializable {
+	public SysUser() {
+	
+	}
+	
+	public SysUser(String id, String roleId, String username, String password, String realName, List<SysRole> roleList) {
+		this.id = id;
+		this.roleId = roleId;
+		this.username = username;
+		this.password = password;
+		this.realName = realName;
+		this.roleList = roleList;
+	}
 	
 	private String id;
 	
@@ -27,16 +38,4 @@ public class SysUser implements Serializable {
 	private String realName;
 	
 	private List<SysRole> roleList;
-	
-	private List<GrantedAuthority> grantedAuthorityList;
-	
-	public List<GrantedAuthority> getGrantedAuthority() {
-		List<GrantedAuthority> authorityList = new ArrayList<>();
-		for(SysRole role : roleList) {
-			for(SysAuthrotity authrotity : role.getAuthrotityList()) {
-				authorityList.add(new SimpleGrantedAuthority(authrotity.getValue()));
-			}
-		}
-		return authorityList;
-	}
 }

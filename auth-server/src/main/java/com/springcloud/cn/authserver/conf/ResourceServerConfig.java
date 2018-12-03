@@ -39,6 +39,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.requestMatcher(new OAuth2RequestMather()).authorizeRequests()
+				.antMatchers("/loadUserByUsername").permitAll()
 				.anyRequest()
 				.authenticated();
 	}
