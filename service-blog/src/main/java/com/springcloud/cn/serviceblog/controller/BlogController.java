@@ -1,7 +1,7 @@
 package com.springcloud.cn.serviceblog.controller;
 
 import com.springcloud.cn.serviceblog.entity.Blog;
-import com.springcloud.cn.serviceblog.utils.MessageBody;
+import com.springcloud.common.commonserver.entity.MessageBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;

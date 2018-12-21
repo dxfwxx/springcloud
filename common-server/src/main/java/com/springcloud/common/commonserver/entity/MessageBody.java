@@ -1,5 +1,4 @@
-package com.springcloud.cn.serviceblog.utils;
-
+package com.springcloud.common.commonserver.entity;
 import lombok.Data;
 
 import java.io.Serializable;
