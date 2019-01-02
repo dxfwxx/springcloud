@@ -25,4 +25,6 @@ public class Blog implements Serializable {
 	private Date createTime;
 	
 	private String createUser;
+	
+	private String tags;
 }

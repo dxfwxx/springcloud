@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author dxf@choicesoft.com.cn
@@ -38,5 +39,25 @@ public class SysUser implements Serializable {
 			}
 		}
 		return authorityList;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		SysUser user = (SysUser) o;
+		return Objects.equals(id, user.id) &&
+				Objects.equals(roleId, user.roleId) &&
+				Objects.equals(username, user.username) &&
+				Objects.equals(password, user.password) &&
+				Objects.equals(realName, user.realName) &&
+				Objects.equals(roleList, user.roleList) &&
+				Objects.equals(grantedAuthorityList, user.grantedAuthorityList);
+	}
+	
+	@Override
+	public int hashCode() {
+		
+		return Objects.hash(id, roleId, username, password, realName, roleList, grantedAuthorityList);
 	}
 }

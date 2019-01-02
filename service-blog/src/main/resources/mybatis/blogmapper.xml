@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springcloud.cn.serviceblog.dao.BlogDao" >
+
+    <resultMap id="userMap" type="com.springcloud.cn.serviceblog.entity.Blog">
+        <result column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="summary" property="summary" />
+        <result column="read_size" property="readSize" />
+        <result column="comment_size" property="commentSize" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser"/>
+        <result column="tags" property="tags" />
+     </resultMap>
+    <select id="findBlogForPage" resultType="com.springcloud.cn.serviceblog.entity.Blog" parameterType="com.springcloud.common.commonserver.entity.SearchVo">
+        select * from blog
+        <where>
+            <if test="tags != null and tags != ''">
+                and tags = #{tags}
+            </if>
+        </where>
+    </select>
+</mapper>

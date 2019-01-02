@@ -39,3 +39,11 @@ security:
   oauth2:
     resource:
       filter-order: 3
+
+
+auth:
+  permitall:
+    -
+      pattern: /blog/**
+    -
+      pattern: /web/public/**
