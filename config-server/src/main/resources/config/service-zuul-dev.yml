@@ -62,5 +62,15 @@ security:
       #是用户终端访问用户信息的URL
       user-info-uri: http://localhost:8766/uaa/user
       prefer-token-info: false
-
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+#设置ribbon超时时间
+ribbon:
+  ReadTimeout: 180000  #读超时设置3分钟
+  ConnectTimeout: 60000 #连接超时设置1分钟
 

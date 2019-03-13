@@ -35,6 +35,7 @@ public class BlogController {
 		PageHelper.startPage(searchVo.getPageNum(), searchVo.getPageSize());
 		
 		List<Blog> blogList = blogService.findBlogForPage(searchVo);
+		System.out.println(blogList);
 		PageInfo<Blog> pageInfo = new PageInfo<>(blogList);
 		return MessageBody.getMessageBody(true, pageInfo);
 	}

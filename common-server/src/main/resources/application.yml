@@ -1,0 +1,10 @@
+spring:
+
+  cloud:
+    config:
+      name: common-server
+      profile: dev
+      uri: http://127.0.0.1:8888
+endpoints:
+  refresh:
+    enabled: true

@@ -27,4 +27,6 @@ public class Blog implements Serializable {
 	private String createUser;
 	
 	private String tags;
+	
+	private String catalogId;
 }
