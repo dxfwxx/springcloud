@@ -30,6 +30,13 @@ mybatis:
   mapperLocations: classpath:mybatis/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
 eureka:
   client:
     service-url:
