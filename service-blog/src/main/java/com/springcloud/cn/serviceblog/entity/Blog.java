@@ -20,13 +20,19 @@ public class Blog implements Serializable {
 	
 	private Integer readSize;
 	
+	private String content;
+	
 	private Integer commentSize;
 	
 	private Date createTime;
 	
-	private String createUser;
+	private String authorId;
+	
+	private String authorName;
 	
 	private String tags;
 	
 	private String catalogId;
+	
+	private List<Comment> commentList;
 }

@@ -1,6 +1,6 @@
 package com.springcloud.cn.serviceblog.dao;
 
-import com.springcloud.cn.serviceblog.entity.Blog;
+import com.springcloud.cn.serviceblog.entity.Comment;
 import com.springcloud.common.commonserver.entity.SearchVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,9 +11,9 @@ import java.util.List;
  * @data
  */
 @Mapper
-public interface BlogDao {
+public interface CommentDao {
 	
-	List<Blog> findBlogForPage(SearchVo searchVo);
+	List<Comment> queryCommentByBlog(SearchVo searchVo);
 	
-	Blog findBlogById(SearchVo searchVo);
+	int add(Comment comment);
 }

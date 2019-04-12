@@ -9,6 +9,12 @@ import lombok.Data;
 @Data
 public class SearchVo {
 	
+	private String id;
+	
+	private String userId;
+	
+	private String blogId;
+	
 	private String order;
 	
 	private String tags;

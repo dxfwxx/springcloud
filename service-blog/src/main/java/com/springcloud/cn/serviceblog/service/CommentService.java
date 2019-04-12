@@ -1,6 +1,6 @@
 package com.springcloud.cn.serviceblog.service;
 
-import com.springcloud.cn.serviceblog.entity.Blog;
+import com.springcloud.cn.serviceblog.entity.Comment;
 import com.springcloud.common.commonserver.entity.SearchVo;
 
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
  * @author dxf@choicesoft.com.cn
  * @data
  */
-public interface BlogService {
+public interface CommentService {
 	
-	List<Blog> findBlogForPage(SearchVo searchVo);
+	List<Comment> queryCommentByBlog(SearchVo searchVo);
 	
-	Blog findBlogById(SearchVo searchVo);
+	Comment addComment(Comment comment);
 }

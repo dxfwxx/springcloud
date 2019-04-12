@@ -60,7 +60,7 @@ public class BlogController {
 	
 	@RequestMapping("/view")
 	@ResponseBody
-	public MessageBody findBlogById(@RequestBody Blog blog) {
-		return MessageBody.getMessageBody(true);
+	public MessageBody findBlogById(@RequestBody SearchVo searchVo) {
+		return MessageBody.getMessageBody(true, blogService.findBlogById(searchVo));
 	}
 }

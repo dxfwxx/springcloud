@@ -20,4 +20,13 @@
             </if>
         </where>
     </select>
+
+    <select id="findBlogById" resultType="com.springcloud.cn.serviceblog.entity.Blog" >
+        select * from blog
+        <where>
+            <if test="id != null and id != ''">
+                id = #{id}
+            </if>
+        </where>
+    </select>
 </mapper>
