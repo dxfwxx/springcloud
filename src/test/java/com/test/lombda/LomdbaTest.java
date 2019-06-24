@@ -1,11 +1,10 @@
 package com.test.lombda;
 
+import com.test.People;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Optional;
+import java.math.BigDecimal;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -97,6 +96,12 @@ public class LomdbaTest {
 		costBeforeTax = Arrays.asList(100, 200, 300, 400, 500);
 		double bill = costBeforeTax.stream().map((cost) -> cost + 0.12*cost).reduce((sum, cost) -> sum + cost).get();
 		System.out.println("Total : " + bill);
+		
+		BigDecimal a = new BigDecimal(1);
+		People people = new People();
+		List<People> list = new ArrayList<>();
+		list.add(people);
+//		list.stream().collect(Collectors.groupingBy(x -> x, Collectors.reducing(v -> v.getValue(), BigDecimal::add)));
 	}
 	
 	

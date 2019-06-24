@@ -6,6 +6,7 @@ import com.springcloud.cn.serviceblog.entity.Blog;
 import com.springcloud.cn.serviceblog.service.BlogService;
 import com.springcloud.common.commonserver.entity.MessageBody;
 import com.springcloud.common.commonserver.entity.SearchVo;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,8 @@ import java.util.List;
  * @data
  */
 @RestController
+@Slf4j
 public class BlogController {
-	
-	private static Logger logger = LoggerFactory.getLogger(BlogController.class);
 	
 	@Autowired
 	private BlogService blogService;
