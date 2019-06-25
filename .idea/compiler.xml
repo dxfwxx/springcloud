@@ -10,14 +10,14 @@
         <module name="service-blog" />
         <module name="service-user" />
         <module name="eureka-server" />
+        <module name="config-client" />
         <module name="config-server" />
         <module name="common-server" />
         <module name="service-feign" />
-        <module name="service-zuul" />
         <module name="service-hi" />
         <module name="service-ribbon" />
         <module name="auth-server" />
-        <module name="config-client" />
+        <module name="service-zuul" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
