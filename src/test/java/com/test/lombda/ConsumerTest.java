@@ -11,16 +11,16 @@ import java.util.function.Predicate;
  */
 public class ConsumerTest {
 	public static void main(String[] args) {
-		System.out.println("consumerTest:  ");
-		consumerTest();
-		System.out.println("functionTest:  ");
-		functionTest();
+//		System.out.println("consumerTest:  ");
+//		consumerTest();
+//		System.out.println("functionTest:  ");
+//		functionTest();
 		System.out.println("predicateTest:  ");
 		predicateTest();
-		System.out.println("optionalTest:  ");
-		optionalTest();
-		
-		System.out.println(TestEnum.TEST_ENUM_ONE.getFlag());
+//		System.out.println("optionalTest:  ");
+//		optionalTest();
+//
+//		System.out.println(TestEnum.TEST_ENUM_ONE.getFlag());
 	}
 	
 	public static void consumerTest() {

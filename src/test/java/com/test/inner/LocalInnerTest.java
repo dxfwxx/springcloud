@@ -7,6 +7,7 @@ package com.test.inner;
 
 class LocalOuter {
 	public void show(int x) {
+		
 		class LocalInner implements Runnable{
 			public void print() {
 //				x++;

@@ -28,7 +28,11 @@ public class LomdbaTest {
 			}
 		}).start();
 		//Java 8之后：
-		new Thread( () -> System.out.println("after Java8, Lambda expression!!") ).start();
+		new Thread( () -> {
+			System.out.println("after Java8, Lambda expression!!");
+			
+		} ).start();
+		
 	}
 	
 	/***
@@ -60,9 +64,9 @@ public class LomdbaTest {
 		// 转换大写
 		List<String> features = Arrays.asList("Lambdas", "Default Method", "Stream API", "Date and Time API");
 		System.out.println(features.stream().map(String::toUpperCase));
-		System.out.println(features.stream().map(String::toUpperCase).collect(Collectors.toList()));
+		System.out.println(features.stream().map(String::toUpperCase).distinct().collect(Collectors.toList()));
 	}
-	/***
+	/***sink
 	 * 例4、Java 8中使用lambda表达式的Map和Reduce示例
 	 */
 	@Test
