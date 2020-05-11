@@ -1,0 +1,58 @@
+#spring:
+#  profiles:
+#    active: ${SPRING_PROFILES_ACTIVE:dev}
+#  application:
+#      name: auth-server
+#
+#
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+#    username: root
+#    password: "123456"
+#  mybatis:
+#    configuration:
+#      cacheEnabled: true
+#      lazyLoadingEnabled: true
+#      aggressiveLazyLoading: true
+#      multipleResultSetsEnabled: true
+#      useColumnLabel: true
+#      useGeneratedKeys: false
+#      autoMappingBehavior: PARTIAL
+#      defaultExecutorType: REUSE
+#      mapUnderscoreToCamelCase: true
+#      localCacheScope: SESSION
+#      jdbcTypeForNull: NULL
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#    password: "123456"
+#
+#mybatis:
+#  mapperLocations: classpath:mybatis/*/*.xml
+#
+#server:
+#  port: 9999
+#
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#
+#
+#security:
+#  oauth2:
+#    resource:
+#      filter-order: 3
+
+spring:
+
+  cloud:
+    config:
+      name: auth-server
+      profile: dev
+      uri: http://127.0.0.1:8888
+endpoints:
+  refresh:
+    enabled: true
